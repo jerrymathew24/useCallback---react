@@ -19,9 +19,8 @@ function App () {
       ? allBrands.filter(brand => brand.brandName.toLowerCase().includes(value.toLowerCase()))
       : allBrands;
     setBrands(updatedBrands);
-  }, []);
-
-  console.log('brands', brands);
+  }, [brands]);
+  // The handleChange function is memoized using useCallback, which means it will only be recreated if the brands state changes. This prevents unnecessary re-renders of the Search component when the parent component re-renders.
   
 
   const handleSort = () => {
@@ -57,3 +56,6 @@ function App () {
   )
 }
 export default App
+
+// here we are using useCallback to memoize the handleChange function, which is passed as a prop to the Search component. This prevents unnecessary re-renders of the Search component when the parent component re-renders. The handleSort function is also defined in the same way, but it is not memoized because it does not depend on any props or state. The brands state is updated based on the input value and the sort button click.
+// The Search component is a simple input field that calls the handleChange function when the value changes. The brands state is updated based on the input value, and the sorted brands are displayed in a list. The useCallback hook is used to optimize the performance of the component by preventing unnecessary re-renders.
